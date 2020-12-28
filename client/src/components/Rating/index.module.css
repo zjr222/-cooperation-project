@@ -1,0 +1,68 @@
+.rating {
+  display: inline-block;
+  zoom: 1;
+  margin: 4px auto 2px;
+  height: 19px;
+  display: inline-flex;
+}
+
+.score {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 3px 3px 0 0;
+  width: 55px;
+  height: 11px;
+  background-image: url('../../assets/images/rating.png');
+}
+
+.score_0 {
+  background-position: 0px -110px;
+}
+
+.score_1 {
+  background-position: 0px -99px;
+}
+
+
+.score_2 {
+  background-position: 0px -88px;
+}
+
+
+.score_3 {
+  background-position: 0px -77px;
+}
+
+.score_4 {
+  background-position: 0px -66px;
+}
+
+.score_5 {
+  background-position: 0px -55px;
+}
+
+.score_6 {
+  background-position: 0px -44px;
+}
+
+.score_7 {
+  background-position: 0px -33px;
+}
+
+.score_8 {
+  background-position: 0px -22px;
+}
+
+.score_9 {
+  background-position: 0px -11px;
+}
+
+.score_10 {
+  background-position: 0px 0px;
+}
+
+.scoreCount {
+  color: #e09015;
+  font-size: 12px;
+  margin-left: 2px;
+}
