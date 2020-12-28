@@ -1,0 +1,37 @@
+.header{
+    width: 100vw;
+    height: 80px;
+    line-height: 80px;
+    background-color: #f0f3f5;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.header .logo{
+    flex-grow: 1;
+    margin-left: 25px;
+}
+
+.header .logo img{
+    width: 190px;
+    height: 40px;
+}
+
+.header .search{
+    width: 100px;
+    height: 30px;
+    flex-grow: 2;
+    margin-right: 25px;
+}
+
+.header .nav-list{
+    flex-grow: 1;
+}
+
+.header .nav-list ul{
+    display: flex;
+}
+.header .nav-list li{
+    flex-grow: 1;
+}

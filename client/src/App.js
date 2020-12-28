@@ -1,11 +1,15 @@
-import './App.css';
-import Rating  from './components/Rating'
+import React from 'react'
+// import { Provider } from "react-redux"
+import 'antd/dist/antd.css'
+import './assets/css/reset.css'
+import Default from './page/index'
+import {BrowserRouter as Router } from 'react-router-dom';
 function App() {
   return (
-    <div className="App">
-      <h1>Movie Club</h1>
-      <Rating score={6.6} />
-    </div>
+    <Router>
+      <Default/>
+    </Router>
+      
   );
 }
 
