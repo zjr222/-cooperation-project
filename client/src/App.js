@@ -3,13 +3,13 @@ import React from 'react'
 import 'antd/dist/antd.css'
 import './assets/css/reset.css'
 import Default from './page/index'
-import {BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 function App() {
   return (
     <Router>
-      <Default/>
+      <Default />
     </Router>
-      
+
   );
 }
 

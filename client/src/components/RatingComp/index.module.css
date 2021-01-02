@@ -9,7 +9,7 @@
 .score {
   box-sizing: border-box;
   display: inline-block;
-  margin: 3px 3px 0 0;
+  margin: 0px 3px 0 0;
   width: 55px;
   height: 11px;
   background-image: url('../../assets/images/rating.png');
