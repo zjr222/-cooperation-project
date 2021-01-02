@@ -20,9 +20,13 @@
 
 .header .search{
     width: 100px;
-    height: 30px;
     flex-grow: 2;
     margin-right: 25px;
+    
+}
+
+.header .btn{
+    vertical-align: middle;
 }
 
 .header .nav-list{

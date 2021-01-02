@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Header from '../Header'
 import Footer from '../Footer'
 import Main from '../Main'
 
-export default function Index(){
-    return(
-        <div className="container">
-            <Header/>
-            <Main/>
-            <Footer/>
-        </div>
-    )
+export default class Index extends Component{
+    render(){
+        return(
+            <div className="container">
+                <Header/>
+                <Main/>
+                <Footer/>
+            </div>
+        )
+    }
+    
 }

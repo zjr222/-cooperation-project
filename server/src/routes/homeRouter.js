@@ -9,13 +9,13 @@ router.get('/hoting', async (req, res) => {
 });
 // 热门电影
 router.get('/hot', async (req, res) => {
-  const result = await spider.getInProgressHot(req.query);
+  const result = await spider.getMoviesPage(req.query);
   res.send(result);
 });
 
 // 最受欢迎的影评
 router.get('/popularFilmReviews', async (req, res) => {
-  const result = await spider.popularFilmReviews();
+  const result = await spider.getPopularFilmReviews();
   res.send(result);
 });
 

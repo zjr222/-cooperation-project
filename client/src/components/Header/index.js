@@ -11,7 +11,7 @@ export default function Header() {
                 <img src={imgUrl} alt="Movie Club" />
             </div>
             <div className="search">
-                <Search placeholder="搜索电影、影人" enterButton/>
+                <Search className="btn" placeholder="搜索电影、影人" enterButton/>
             </div>
             <div className="nav-list">
                 <ul>

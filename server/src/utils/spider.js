@@ -22,7 +22,7 @@ async function getSelector(pagePath) {
 /** 
  *  抓取最受欢迎的影评
  */
-async function popularFilmReviews() {
+async function getPopularFilmReviews() {
   const $ = await getSelector("https://movie.douban.com/");
   const titleIndexCon = $('#reviews .reviews-hd>h2').text().slice(0, 7); //抓取标题(最受欢迎的影评)
   const reviewsCon = $('#reviews .reviews-bd .review'); //影评电影片数
@@ -58,6 +58,8 @@ async function getInProgressHot() {
   let everyMovies = [];
   for (let i = 0; i < movieCons.length; i++) {
       const everyMovieCon = movieCons[i]; //每部电影的属性
+      let imgSrc = $(movieCons[i]).find('.poster a img').attr('src').replace(/jpg/,"webp") //电影图片
+      // console.log(imgSrc.replace(/jpg/,"webp"));
       const data = everyMovieCon.parent.attribs; //每部影片的简介内容(都在标签的data-xxxx属性上获取内容)
       everyMovies.push({
           movieName: data['data-title'], //电影名
@@ -70,6 +72,7 @@ async function getInProgressHot() {
           director: data['data-director'], //导演
           actors: data['data-actors'], //演员
           rater: data['data-rater'], //评分员数量
+          img:imgSrc, //电影图片
       })
   }
   return {
@@ -153,7 +156,7 @@ async function getClasseMovie({
 
 
 module.exports = {
-  popularFilmReviews,
+  getPopularFilmReviews,
   getInProgressHot,
   getMoviesPage,
   getSortMovies,
