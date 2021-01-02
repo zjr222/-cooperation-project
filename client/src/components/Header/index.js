@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import imgUrl from '../../assets/img/Logo.PNG'
-import './index.css'
+// import './index.css'
 import { Input } from 'antd'
 const {Search} =  Input;
 export default function Header() {

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {
    Component
 } from 'react'
@@ -70,6 +71,15 @@ export default class Main extends Component{
    render() {
       return ( 
          <div className="box"> 
+=======
+import React from 'react'
+export default function Main(){
+    return(
+        <div className="main">
+            <div className="hoting-received">
+                <h2>正在热映</h2>
+            </div>
+>>>>>>> lyl
             <div className="hot-movies">
                <h2 className="title">{this.state.hotMovies.title}</h2>
                <div className="movies">

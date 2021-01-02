@@ -110,6 +110,9 @@ async function getSortMovies() {
     let title = $li.find('.item div.pl2 a');
     title = removeSpace(title.text()); // 去除多余空格
 
+    let cover = $li.find('.item img').attr('src'); // 得到封面图地址
+    cover.replace(/\.(?=jpg)/, 'webp');
+
     const description = $li.find('.item div.pl2 p.pl').text().trim(); // 电影简略描述 
 
     const rate = $li.find('.item div.pl2 .star .rating_nums').text(); // 电影评分
@@ -122,7 +125,8 @@ async function getSortMovies() {
       title,
       description,
       rate,
-      rater
+      rater,
+      cover
     });
   }
   return newsMovieSort;

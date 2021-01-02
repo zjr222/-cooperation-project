@@ -1,0 +1,44 @@
+.wrapper {
+  width: 1200px;
+}
+
+.wrapper .title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  padding-left: 16px;
+}
+
+.itemWrapper {
+  padding: 15px 20px;
+}
+
+.itemWrapper .item {
+  box-sizing: border-box;
+}
+
+.itemWrapper .item .cover {
+  width: 80px;
+  margin-right: 18px;
+}
+
+.itemWrapper .item .description {
+  width: 1024px;
+  font-size: 14px;
+  padding-right: 60px;
+}
+
+.itemWrapper .item .description p{
+  line-height: 26px;
+  margin-bottom: 10px;
+}
+
+.itemWrapper .item .description .rote>span:last-child {
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+.img {
+  width: 100%;
+}
+
