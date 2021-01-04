@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, {
    Component
 } from 'react'
@@ -9,21 +8,16 @@ export default class Main extends Component{
    constructor(props){
       super(props);
       this.state={
-         hotMovies:{},
-         inProgressHot:{},
-         popularFilmReviews:{},
-         dom:[],
+         hot:[],
+         hotMovies:[],
+         popularFilm:[],
       }
    }
    componentDidMount() {
       const self = this;
       data.default.getInProgressHot().then(res=>{ //正在热映
-         // console.log(res)
-         self.setState({
-            inProgressHot:{...res}
-         })
-         this.state.dom = this.state.inProgressHot.everyMovies.map((k,v)=>{
-            console.log(k)
+        const hotPage = res.everyMovies.map((k,v)=>{
+            // console.log(k)
             return (
                <div key={v}>
                   <li className="poster">
@@ -46,46 +40,78 @@ export default class Main extends Component{
                </div>
             )
          })
+         self.setState({
+            hot:[...hotPage]
+         })
       })
       data.default.getMoviesPage().then(res=>{ //热门电影
-         self.setState({
-            hotMovies:{...res}
+         const movies = res.subjects.map((k,v) =>{
+            // console.log(k)
+            return (
+                     <div className="page1" key={v}>
+                        <a href="item">
+                           <div className="cover-wp">
+                              <img src={k.cover} alt={k.title}/>
+                           </div>
+                           <p className="title">{k.title}</p>
+                        </a>
+                     </div>
+            )
          })
-         // console.log(this.state.hotMovies)
-         // let dom = self.state.hotMovies.map( k =>{
-         //    console.log(k)
-         //    return <li></li>
-         // })
+         self.setState({
+            hotMovies:[...movies]
+         })
       })
-      // data.default.getPopularFilmReviews().then(res=>{ //正在热映
-      //    console.log(res)
-      //    self.setState({
-      //       popularFilmReviews:{...res}
-      //    })
-      //    // self.state.popularFilmReviews.map((k,v)=>{
-      //    //    console.log(k)
-      //    // })
-      // })
+      data.default.getPopularFilmReviews().then(res=>{ //正在热映
+         const popular = res.reviewMovs.map((k,v)=>{
+            // console.log(k);
+            return (
+               <>
+                  <div className="review" key={v}>
+                     <div className="review-hd">
+                        <a href="">
+                           <img src={k.url} alt={k.titles}/>
+                        </a>
+                     </div>
+                     <div className="review-bd">
+                        <h3>
+                           <a href=""></a>
+                        </h3>
+                        <div className="review-content">
+                           {k.contents}
+                        </div>
+                     </div>
+                  </div>
+               </>
+            )
+         })
+         self.setState({
+            popularFilm:[...popular]
+         })
+      })
    }
 
    render() {
       return ( 
          <div className="box"> 
-=======
-import React from 'react'
-export default function Main(){
-    return(
-        <div className="main">
-            <div className="hoting-received">
-                <h2>正在热映</h2>
-            </div>
->>>>>>> lyl
             <div className="hot-movies">
                <h2 className="title">{this.state.hotMovies.title}</h2>
-               <div className="movies">
+               <div className="hot">
                   <ul>
-                     {this.state.dom}
+                     {this.state.hot}
                   </ul>
+               </div>
+            </div>
+            <div className="movies-page">
+               <h2 className="title">最近热门电影</h2>
+               <div>
+                  {this.state.hotMovies}
+               </div>
+            </div>
+            <div className="popular">
+               <h2 className="title">{this.state.popularFilm.titleIndexCon}</h2>
+               <div className="reviews">
+                  {this.state.popularFilm}
                </div>
             </div>
          </div>
