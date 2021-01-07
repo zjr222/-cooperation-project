@@ -4,6 +4,7 @@ export default class Layout extends Component {
     static propTypes = {
         header: PropTypes.element,
         footer: PropTypes.element,
+        main: PropTypes.element,
     }
 
     render (){
@@ -12,9 +13,9 @@ export default class Layout extends Component {
                 <header className="header">
                     {this.props.header}
                 </header>
-                {/* <main>
+                <main>
                     {this.props.main}
-                </main> */}
+                </main>
                 <footer>
                     {this.props.footer}
                 </footer>
