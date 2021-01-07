@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {
    Component
 } from 'react'
@@ -100,5 +101,18 @@ export default class Main extends Component{
          </div>
       )
    }
+=======
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Index from '../Index';
+import RankList from '../RankList';
+>>>>>>> f6427391d48c452a2b85cadc311e18bf11ea7578
 
+export default function Main() {
+   return <div>
+      <Switch>
+         <Route path="/" exact component={Index} />
+         <Route path="/ranklist" exact component={RankList} />
+      </Switch>
+   </div>;
 }

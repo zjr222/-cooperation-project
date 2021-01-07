@@ -470,8 +470,20 @@ async function getActorAllMovie(id, sortby = 'vote', format = 'pic', start = 0) 
   return moives;
 }
 
-async function getMovieLess(id) {
-
+// 搜索
+async function getSearchResult(keyword) {
+  keyword = encodeURI(keyword);
+  const $ = await getSelector(`https://search.douban.com/movie/subject_search?search_text=${keyword}&cat=1002`);
+   console.log($('#wrapper').text());
+  const movies = [];
+  const $lis = $('#wrapper #root .item-root');
+  console.log($lis.length);
+  for (let i = 0; i < $lis.length; i++) {
+    const $ele = $($lis[i]);
+    const id = $ele.find('>a img').attr('src').match(/\d+(?=\/)/)[0];
+    console.log(id);
+  }
+  return moves;
 }
 
 module.exports = {
@@ -488,4 +500,5 @@ module.exports = {
   getCommentInMovie,
   getAllCommentsInMovie,
   getLikeByMovie,
+  getSearchResult,
 }
