@@ -13,7 +13,7 @@ export default function Default() {
             <Router>
                 <Switch>
                     <Route path="/" exact component={Index} />
-                    <Route path="/rankList"  component={RankList}/>
+                    <Route path="/rankList" component={RankList}/>
                     <Route path="/sort"  component={SortComp}/>
                     <Route  component={NotFound} />
                 </Switch>

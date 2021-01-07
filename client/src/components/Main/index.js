@@ -2,6 +2,7 @@ import React, {
    Component
 } from 'react'
 import * as data from '../../services/getData'
+import CommonComp from '../commonComp'
 import './index.css'
 
 export default class Main extends Component{
@@ -20,23 +21,7 @@ export default class Main extends Component{
             // console.log(k)
             return (
                <div key={v}>
-                  <li className="poster">
-                     <a href="">
-                        <img src={k.img} alt={k.movieName}/>
-                     </a>
-                  </li>
-                  <li className="title">
-                     <a href="" onClick={()=>{}}>{k.movieName}</a>
-                  </li>
-                  <li className="rating">
-                     <span className="rating-star"></span>
-                     <span className="rate">{k.rate}</span>
-                  </li>
-                  <li className="ticket-btn">
-                     <span>
-                        <a href="">选座购票</a>
-                     </span>
-                  </li>
+                  <CommonComp isRate={k.rate} img={k.img} title={k.movieName} />
                </div>
             )
          })
@@ -46,7 +31,6 @@ export default class Main extends Component{
       })
       data.default.getMoviesPage().then(res=>{ //热门电影
          const movies = res.subjects.map((k,v) =>{
-            // console.log(k)
             return (
                      <div className="page1" key={v}>
                         <a href="item">
@@ -63,8 +47,7 @@ export default class Main extends Component{
          })
       })
       data.default.getPopularFilmReviews().then(res=>{ //正在热映
-         const popular = res.reviewMovs.map((k,v)=>{
-            // console.log(k);
+         const popular = res.reviewMovs.map((k,v)=>{;
             return (
                <>
                   <div className="review" key={v}>
