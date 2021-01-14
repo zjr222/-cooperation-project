@@ -1,19 +1,13 @@
 export const actionTypes = {
-    HOTMOVIES : Symbol("hot-movies"),//热门电影
-    POPULARFILMREVIEWS : Symbol("popular-film-reviews"),//最受欢迎的影评
-    INPROGRESSHOT : Symbol("in-progress-hot")//正在热映
+    MOVIESNAME : Symbol("movies-name"),//电影名
+    ALLCOMMENTS : Symbol("all-comments"),//某部电影的所有短评
 }
 
 export const getMoviesPage = (data) => ({
-    type: actionTypes.HOTMOVIES,
+    type: actionTypes.MOVIESNAME,
     payload: data
 })
 export const getPopularFilmReviews = (data) => ({
-    type: actionTypes.POPULARFILMREVIEWS,
-    payload: data
-})
-
-export const getInProgressHot = (data) => ({
-    type: actionTypes.INPROGRESSHOT,
+    type: actionTypes.ALLCOMMENTS,
     payload: data
 })

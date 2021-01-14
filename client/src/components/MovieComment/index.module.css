@@ -1,0 +1,85 @@
+.container{
+    width: 1190px;
+    margin: 0 auto;
+}
+
+.h1{
+    padding-bottom: 30px;
+    font-size: 26px;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.avatar{
+    padding-top: 10px;
+    padding-right: 13px;
+    width: 60px;
+    height: 60px;
+}
+
+.avatar img{
+    width: 48px;
+    height: 48px;
+}
+.all{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.comments{
+    position: relative;
+}
+.radio{
+    height: 60px;
+    line-height: 60px;
+}
+
+.radio::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    background: #ddd;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+}
+
+.radio::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #ddd;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+}
+
+.radio label{
+    margin-right: 30px !important;
+}
+
+.pagination{
+    padding: 20px;
+}
+
+/* 加载页面中 */
+.cont{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.spin{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}

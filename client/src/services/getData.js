@@ -32,49 +32,50 @@ export default  {
     },
     //电影详情描述
     getMovieDetail(id) {
-        return axios.get('/detail').then(res => {
-            return res.data;
-        })
-    },
-    //演员的详情
-    getActorDetail(id) {
-        return axios.get('/detail/other').then(res => {
-            return res.data;
-        })
-    },
-    //某个演员的所有作品
-    getActorAllMovie(id, sortby = 'vote', format = 'pic', start = 0){
-        return axios.get('/product').then(res => {
+        return axios.get(`/movie/detail`,{params:{id}}).then(res => {
             return res.data;
         })
     },
     //当前电影页部分参与演员
     getActorsInMovie(id){
-        return axios.get('/detail/lessactors').then(res => {
+        return axios.get(`/movie/detail/lessactors`,{params:{id}}).then(res=>{
             return res.data;
         })
     },
+    //演员的详情
+    getActorDetail(id) {
+        return axios.get('/movie/detail/other',{params:{id}}).then(res => {
+            return res.data;
+        })
+    },
+    //某个演员的所有作品
+    // getActorAllMovie(id, sortby = 'vote', format = 'pic', start = 0){
+    //     return axios.get('/product',{params:{id, sortby, format, start}}).then(res => {
+    //         return res.data;
+    //     })
+    // },
     //当前电影的部分评论
     getCommentInMovie(id){
-        return axios.get('/detail/lesscomments').then(res => {
+        return axios.get('/movie/detail/lesscomments',{params:{id}}).then(res => {
             return res.data;
         })
     },
     //某个电影的全部评论
     getAllCommentsInMovie({
         id,
+        start = 20,
         sort = 'new_score',
         limit = 20,
         status = 'P',
         percent_type= '',
       } = {}){
-        return axios.get('/comments').then(res => {
+        return axios.get('/movie/comments',{params:{id,start,sort,limit,status,percent_type}}).then(res => {
             return res.data;
         })
     },
     //喜欢某部电影的还喜欢看
     getLikeByMovie(id){
-        return axios.get('/actors').then(res => {
+        return axios.get('/movie/detail/other',{params:{id}}).then(res => {
             return res.data;
         })
     },

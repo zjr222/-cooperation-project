@@ -50,7 +50,10 @@ async function getPopularFilmReviews() {
   }
 }
 
-// 获取正在热映模块
+/*
+*
+* 获取正在热映模块
+*/
 async function getInProgressHot() {
   const $ = await getSelector("https://movie.douban.com/");
   const title = $("#screening .screening-hd>h2").text().slice(0, 4); // 标题(正在热映)
@@ -78,6 +81,14 @@ async function getInProgressHot() {
     everyMovies
   }
 }
+/**
+ *  获取电影简述 (将鼠标放在首页电影的图片上的弹框)
+ */
+
+// async function getMovieSketch(){
+
+// }
+
 
 /**
  * 抓取热门电影数据
@@ -231,29 +242,21 @@ async function getMovieActorImg(id) {
 // 电影详情描述
 async function getMovieDetail(id) {
   const $ = await getSelector(`https://movie.douban.com/subject/${id}`);
-
   const imgUrl = $('#content #mainpic a img').attr('src');
-
   const title = $('#content h1').text().trim().replace(/\s(?=\s)/g, ''); // 电影名称
-
   const director = $('#content .article .subject #info span:nth-of-type(1)>.attrs').text(); // 导演
-
   const author = $('#content .article .subject #info span:nth-of-type(2)>.attrs').text(); // 编剧
-
   const actors = $('#content .article .subject #info span:nth-of-type(3)>.attrs').text(); // 演员
-
-  const type = $('#content .article .subject #info span:nth-of-type(5)').text() + ' / ' + $('#content .article .subject #info span:nth-of-type(6)').text(); // 类型
-
-  const countryNode = $('#content .article .subject #info span:nth-of-type(7)')[0].nextSibling;
-  const country = $(countryNode).text().trim(); // 出品国家
-
-  const languageNode = $('#content .article .subject #info span:nth-of-type(8)')[0].nextSibling;
+  const type = $('#content .article .subject #info span:nth-of-type(5)').text()// 类型
+  const aliasNode = $('#content .article .subject #info span:nth-of-type(6)')[0].nextSibling;
+  const country = $(aliasNode).text().trim(); // 出品国家
+  const languageNode = $('#content .article .subject #info span:nth-of-type(7)')[0].nextSibling;
   const language = $(languageNode).text().trim(); // 语言
-
-  const date = $('#content .article .subject #info span:nth-of-type(10)').text(); // 上映时间
+  const introduction = $('.related-info .indent span').text().trim() //电影简介
+  const showDate = $('#content .article .subject #info span:nth-of-type(9)').text(); // 上映日期
   const time = $('#content .article .subject #info span:nth-of-type(11)').text().match(/\d+/)[0]; // 时长
-  const aliasNode = $('#content .article .subject #info span:nth-of-type(13)')[0].nextSibling; // 地区
-  const alias = $(aliasNode).text().trim();
+  const englishNameNode = $('#content .article .subject #info span:nth-of-type(12)')[0].nextSibling //英文名
+  const englishName = $(englishNameNode).text().trim();
   return {
     id,
     title,
@@ -263,10 +266,11 @@ async function getMovieDetail(id) {
     type,
     country,
     language,
-    date,
+    showDate,
     time,
-    alias,
     imgUrl,
+    introduction,
+    englishName
   }
 }
 
@@ -318,6 +322,7 @@ async function getActorDetail(id) {
       date,
     });
   }
+  // console.log(img,sex);
   return {
     img,
     sex,
@@ -357,6 +362,8 @@ async function getCommentInMovie(id) {
   const $ = await getSelector(`https://movie.douban.com/subject/${id}`);
   const comments = [];
   const $commentsEle = $('#content #comments-section #hot-comments .comment-item');
+  const allComment = $('#hot-comments>a').text().trim().replace(/[^0-9]/ig,"") //短评总条数
+  // console.log(allComment);
   for (let i = 0; i < $commentsEle.length; i++) {
     const $ele = $($commentsEle[i]);
     const name = $ele.find('.comment h3 .comment-info>a').text(); // 评论者姓名
@@ -369,10 +376,12 @@ async function getCommentInMovie(id) {
       name,
       date,
       rate,
+      allComment,
       content,
       useful,
     });
   }
+  comments.push(allComment);
   return comments;
 }
 
@@ -383,12 +392,13 @@ async function getCommentInMovie(id) {
 // percent_type 默认全部 'h' 好评 'm'一般 'l'差评 
 async function getAllCommentsInMovie({
   id,
+  start,
   sort = 'new_score',
   limit = 20,
   status = 'P',
   percent_type= '',
 } = {}) {
-  const $ = await getSelector(`https://movie.douban.com/subject/${id}/comments?percent_type=${percent_type}&limit=${limit}&status=${status}&sort=${sort}`)
+  const $ = await getSelector(`https://movie.douban.com/subject/${id}/comments?percent_type=${percent_type}&start=${start}&limit=${limit}&status=${status}&sort=${sort}`)
   const comments = [];
   const $lis = $('#content #comments .comment-item');
   for (let i = 0; i < $lis.length; i++) {
@@ -398,8 +408,8 @@ async function getAllCommentsInMovie({
     const $rateEle = $ele.find('.comment .comment-info span.rating'); // 评分
     const rate = $rateEle.attr('class') ? $rateEle.attr('class').match(/\d{1}/)[0] * 2 : 10;
     const useful = $ele.find('.comment .comment-vote .vote-count').text(); // 点赞数
-    const content = $ele.find('.comment . comment-content span').text(); // 内容
-    const date = $ele.find('comment .comment-info .comment-time').text().trim(); // 评论时间
+    const content = $ele.find('.comment .comment-content span.short').text(); // 内容
+    const date = $ele.find('.comment .comment-info span.comment-time').text().trim(); // 评论时间
     comments.push({
       img,
       name,

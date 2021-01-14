@@ -1,0 +1,167 @@
+/* 电影简介 */
+.content{
+    width: 1190px;
+    margin: 0 auto;
+}
+.content h1{
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+.subject{
+    display: flex;
+}
+.img img{
+    width: 160px;
+    height: 250px;
+}
+
+.info {
+    padding-left: 10px;
+    word-wrap: break-word;
+    width: 300px;
+}
+.info>span{
+    display: block;
+    padding-bottom: 5px;
+    font-size: 16px;
+}
+.rate{
+    widows: 150px;
+    height: 50px;
+    padding: 10px;
+    font-size: 16px;
+}
+.rate h3{
+    color: #494949;
+    padding-bottom: 6px;
+}
+
+.introduction{
+    padding-top: 20px;
+}
+
+.title{
+    font-size: 20px;
+    padding-bottom: 25px;
+    color:#007722
+}
+
+.describ{
+    text-indent: 4rem;
+    font-size: 16px;
+}
+
+/* 演员简介 */
+.flex{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 1190px;
+    margin: 0 auto;
+}
+.box{
+    align-items:stretch;
+    padding: 0 5px;
+}
+.celebrity{
+    font-size: 16px;
+    padding-top: 20px;
+    margin: 0 10px;
+}
+.h3{
+    width: 1190px;
+    margin: 0 auto;
+    color: #007722;
+    font-size: 18px;
+    font-weight: 200;
+    padding-top: 30px;
+}
+
+.avatar img{
+    width: 105px;
+    height: 150px;
+}
+
+.infos{
+    flex-wrap: wrap;
+}
+.name{
+    text-align: center;
+    padding: 5px 0px;
+    color: black;
+}
+.role{
+    padding-top: 5px;
+    color: #494949;
+    text-align: center;
+}
+
+/* 喜欢这部电影的其他的电影 */
+.otherMovie{
+    width: 1190px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+.otherMovie ul{
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item{
+    flex-basis: 142.8px;
+}
+
+.item a img{
+    width: 125px;
+    height: 173px;
+}
+
+.item p{
+    width: 125px;
+    font-size: 14px;
+    text-align: center;
+    padding: 15px 0px;
+    color: #067e1a;
+}
+
+.item p a{
+    color: inherit;
+}
+
+.more{
+    width: 1190px;
+    margin: 0 auto;
+    padding-top: 20px;
+    color: #3690d4;
+    font-size: 14px;
+}
+
+.more a{
+    color: inherit;
+}
+
+/*热映短评*/
+.comment{
+    padding-top: 20px;
+}
+
+
+/* 加载页面中 */
+.cont{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.spin{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}

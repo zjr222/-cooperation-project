@@ -6,6 +6,9 @@ export default class Layout extends Component {
         footer: PropTypes.element,
         main: PropTypes.element,
     }
+    componentDidMount(){
+        // console.log(this.props)
+    }
 
     render (){
         return(

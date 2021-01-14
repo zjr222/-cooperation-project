@@ -1,5 +1,5 @@
 import React from 'react'
-// import './index.css'
+import styles from './index.module.css'
 import {Button} from 'antd'
 export default function NotFound(props){
     return (

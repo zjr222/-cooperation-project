@@ -1,5 +1,11 @@
-.abc {
-  background: red;
-  width: 100px;
-  height: 100px;
+.box{
+  width: 1190px;
+  margin: 0 auto;
+}
+.container .title{
+  font-size: 16px;
+  color: black;
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #ccc;
 }

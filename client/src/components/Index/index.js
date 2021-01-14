@@ -2,7 +2,8 @@ import React, {
     Component
  } from 'react'
  import * as data from '../../services/getData'
- import './index.css'
+ import MovieComp from '../CommonComp/MovieComp'
+ import styles from './index.module.css'
  
  export default class Main extends Component{
     constructor(props){
@@ -17,26 +18,10 @@ import React, {
        const self = this;
        data.default.getInProgressHot().then(res=>{ //正在热映
          const hotPage = res.everyMovies.map((k,v)=>{
-             // console.log(k)
+            //  console.log(k)
              return (
                 <div key={v}>
-                   <li className="poster">
-                      <a href="">
-                         <img src={k.img} alt={k.movieName}/>
-                      </a>
-                   </li>
-                   <li className="title">
-                      <a href="" onClick={()=>{}}>{k.movieName}</a>
-                   </li>
-                   <li className="rating">
-                      <span className="rating-star"></span>
-                      <span className="rate">{k.rate}</span>
-                   </li>
-                   <li className="ticket-btn">
-                      <span>
-                         <a href="">选座购票</a>
-                      </span>
-                   </li>
+                   <MovieComp data={k}/>
                 </div>
              )
           })
@@ -48,12 +33,12 @@ import React, {
           const movies = res.subjects.map((k,v) =>{
              // console.log(k)
              return (
-                      <div className="page1" key={v}>
+                      <div className={styles.page1} key={v}>
                          <a href="item">
-                            <div className="cover-wp">
+                            <div className={styles.coverWp}>
                                <img src={k.cover} alt={k.title}/>
                             </div>
-                            <p className="title">{k.title}</p>
+                            <p className={styles.title}>{k.title}</p>
                          </a>
                       </div>
              )
@@ -67,17 +52,17 @@ import React, {
              // console.log(k);
              return (
                 <>
-                   <div className="review" key={v}>
-                      <div className="review-hd">
+                   <div className={styles.review} key={v}>
+                      <div className={styles.reviewHd}>
                          <a href="">
                             <img src={k.url} alt={k.titles}/>
                          </a>
                       </div>
-                      <div className="review-bd">
+                      <div className={styles.reviewBd}>
                          <h3>
                             <a href=""></a>
                          </h3>
-                         <div className="review-content">
+                         <div className={styles.reviewContent}>
                             {k.contents}
                          </div>
                       </div>
@@ -93,24 +78,24 @@ import React, {
  
     render() {
        return ( 
-          <div className="box"> 
-             <div className="hot-movies">
-                <h2 className="title">{this.state.hotMovies.title}</h2>
-                <div className="hot">
+          <div className={styles.box}> 
+             <div className={styles.hotMovies}>
+                <h2 className={styles.title}>{this.state.hotMovies.title}</h2>
+                <div className={styles.hot}>
                    <ul>
                       {this.state.hot}
                    </ul>
                 </div>
              </div>
-             <div className="movies-page">
-                <h2 className="title">最近热门电影</h2>
+             <div className={styles.moviePage}>
+                <h2 className={styles.title}>最近热门电影</h2>
                 <div>
                    {this.state.hotMovies}
                 </div>
              </div>
-             <div className="popular">
-                <h2 className="title">{this.state.popularFilm.titleIndexCon}</h2>
-                <div className="reviews">
+             <div className={styles.popular}>
+                <h2 className={styles.title}>{this.state.popularFilm.titleIndexCon}</h2>
+                <div className={styles.reviews}>
                    {this.state.popularFilm}
                 </div>
              </div>
