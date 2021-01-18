@@ -23,9 +23,9 @@ export default function MovieCoverComp(props) {
                 <span className={styles.region}>{props.data.region}</span>
               </div>
               <div className={styles.director}>
-                  {`导演  ${props.data.director}`}
+                  {`导演:  ${Array.isArray(props.data.director) ? props.data.director.join(', ') : props.data.director}`}
               </div>
-              <div className={styles.actors}>{`主演  ${props.data.actors}`}</div>
+              <div className={styles.actors}>{`主演:  ${Array.isArray(props.data.actors) ? props.data.actors.join(', ') : props.data.actors}`}</div>
     </div>)
   }else{
     page = (<div></div>)

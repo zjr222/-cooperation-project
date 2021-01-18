@@ -25,10 +25,14 @@ export default  {
         })
     },
     //分类
-    getClasseMovie() {
-        return axios.get('/classe').then(res => {
+    getClasseMovie(condition) {
+        return axios.get('/classe', {
+            params: {
+                ...condition,
+            },
+        }).then(res => {
             return res.data;
-        })
+        });
     },
     //电影详情描述
     getMovieDetail(id) {

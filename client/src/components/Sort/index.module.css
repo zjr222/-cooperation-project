@@ -1,0 +1,16 @@
+.sortWrapper {
+  width: 1190px;
+  margin: 0 auto;
+}
+
+.sortWrapper .movieList {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.sortWrapper .movieList >div {
+  margin: 0 52px;
+  margin-bottom: 18px;
+}

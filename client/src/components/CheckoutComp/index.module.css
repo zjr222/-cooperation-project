@@ -1,0 +1,27 @@
+.itemWrapper {
+  width: 960px;
+  box-sizing: border-box;
+  /* padding-left: 36px; */
+}
+
+.itemWrapper .tag {
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 6px 12px;
+  margin: 0 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 550;
+  color: #333;
+}
+
+.itemWrapper .tag:nth-of-type(1) {
+  margin-left: 0;
+}
+
+.itemWrapper .tag.active {
+  background-color: #51A4D7;
+  color: #fff;
+}

@@ -27,9 +27,7 @@ export default class DetailsComp extends Component{
     componentDidMount(){
         data.default.getMovieDetail(this.props.match.params.id).then(r =>{
             // console.log(r);
-                this.setState({
-                    title:r.title
-                })
+                
                 const hotPage  = (
                         <div className={styles.content}>
                             <h1>{r.title}</h1>
@@ -135,6 +133,8 @@ export default class DetailsComp extends Component{
                         </div>
                 )
                 this.setState({
+                    ...this.state,
+                    title:r.title,
                     detail:hotPage
                 })
         })
