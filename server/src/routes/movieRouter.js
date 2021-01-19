@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getMovieDetail, getLikeByMovie, getActorsInMovie, getCommentInMovie, getAllCommentsInMovie, getMovieActorImg } = require('../utils/spider');
+const { getMovieDetail, getLikeByMovie, getActorsInMovie, getCommentInMovie, getAllCommentsInMovie, getMovieAllActorMsg } = require('../utils/spider');
 const router = Router();
 
 // 获取电影详情
@@ -34,7 +34,7 @@ router.get('/comments', async (req, res) => {
 
 // 获取某个电影的所有演员
 router.get('/actors', async (req, res) => {
-  const result = await getMovieActorImg(req.query.id);
+  const result = await getMovieAllActorMsg(req.query.id);
   res.send(result);
 });
 

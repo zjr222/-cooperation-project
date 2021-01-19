@@ -29,13 +29,13 @@
     vertical-align: middle;
 }
 
-.header .nav-list{
+.header .navList{
     flex-grow: 1;
 }
 
-.header .nav-list ul{
+.header .navList ul{
     display: flex;
 }
-.header .nav-list li{
+.header .navList li{
     flex-grow: 1;
 }

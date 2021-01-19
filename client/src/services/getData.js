@@ -44,16 +44,22 @@ export default  {
     },
     //演员的详情
     getActorDetail(id) {
-        return axios.get('/movie/detail/other',{params:{id}}).then(res => {
+        return axios.get('/actor/detail',{params:{id}}).then(res => {
+            return res.data;
+        })
+    },
+    //
+    getMovieAllActorMsg(id){
+        return axios.get('/movie/actors',{params:{id}}).then(res => {
             return res.data;
         })
     },
     //某个演员的所有作品
-    // getActorAllMovie(id, sortby = 'vote', format = 'pic', start = 0){
-    //     return axios.get('/product',{params:{id, sortby, format, start}}).then(res => {
-    //         return res.data;
-    //     })
-    // },
+    getActorAllMovie({id, sortby = 'vote', format = 'pic', start = 0} = {}){
+        return axios.get('/actor/product',{params:{id, sortby, format, start}}).then(res => {
+            return res.data;
+        })
+    },
     //当前电影的部分评论
     getCommentInMovie(id){
         return axios.get('/movie/detail/lesscomments',{params:{id}}).then(res => {

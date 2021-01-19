@@ -1,0 +1,60 @@
+.celebrities{
+    width: 1190px;
+    margin: 0 auto;
+}
+
+.celebrities h1{
+    padding: 20px 0px;
+    font-size: 25px;
+}
+
+.director h2{
+    font-size: 16px;
+    padding-bottom: 20px;
+    font-weight: 200;
+}
+.introduce .dir{
+    padding-left: 15px;
+}
+.introduce{
+    display: flex;
+}
+.introduce img{
+    width: 85px;
+    height: 114px;
+}
+.introduce p.name{
+    font-size: 16px;
+}
+
+.introduce p{
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+/* 演员 */
+.actors,
+.writer,
+.producer{
+    margin: 20px 0px;
+    border-top: 1px dashed #ccc;
+}
+.actors h2,
+.writer h2,
+.producer h2{
+    font-size: 16px;
+    font-weight: 200;
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+.actors .allActors,
+.writer .allWriter,
+.producer .allProducer{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.actors .actor{
+    flex-basis: 50%;
+    padding: 15px 0;
+}

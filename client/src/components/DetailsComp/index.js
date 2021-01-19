@@ -42,7 +42,7 @@ export default class DetailsComp extends Component{
                                         <span className={styles.director}>
                                            导演
                                         </span>
-                                        :
+                                        ：
                                         <span className={styles.name}>
                                             {r.director}
                                         </span>
@@ -51,7 +51,7 @@ export default class DetailsComp extends Component{
                                         <span className={styles.director}>
                                            编剧
                                         </span>
-                                        :
+                                        ：
                                         <span className={styles.name}>
                                             {r.director}
                                         </span>
@@ -60,7 +60,7 @@ export default class DetailsComp extends Component{
                                         <span className={styles.director}>
                                            主演
                                         </span>
-                                        :
+                                        ：
                                         <span className={styles.name}>
                                             {r.actors}
                                         </span>
@@ -69,7 +69,7 @@ export default class DetailsComp extends Component{
                                         <span className={styles.director}>
                                            类型
                                         </span>
-                                        :
+                                        ：
                                         <span className={styles.name}>
                                             {r.type}
                                         </span>
@@ -78,7 +78,7 @@ export default class DetailsComp extends Component{
                                         <span className={styles.director}>
                                            制片国家地区
                                         </span>
-                                        :
+                                        ：
                                         <span className={styles.name}>
                                             {r.country}
                                         </span>
@@ -87,7 +87,7 @@ export default class DetailsComp extends Component{
                                         <span className={styles.director}>
                                            语言
                                         </span>
-                                        :
+                                        ：
                                         <span className={styles.name}>
                                             {r.language}
                                         </span>
@@ -96,7 +96,7 @@ export default class DetailsComp extends Component{
                                         <span className={styles.director}>
                                            上映日期
                                         </span>
-                                        :
+                                        ：
                                         <span className={styles.name}>
                                             {r.showDate}
                                         </span>
@@ -105,7 +105,7 @@ export default class DetailsComp extends Component{
                                         <span className={styles.director}>
                                            片长
                                         </span>
-                                        :
+                                        ：
                                         <span className={styles.name}>
                                             {`${r.time}分钟`}
                                         </span>
@@ -114,7 +114,7 @@ export default class DetailsComp extends Component{
                                         <span className={styles.director}>
                                             又名
                                         </span>
-                                        :
+                                        ：
                                         <span className={styles.name}>
                                             {r.englishName}
                                         </span>
@@ -198,20 +198,20 @@ export default class DetailsComp extends Component{
                 comment:commentPage,
             })
         })
-        // data.default.getAllCommentsInMovie({
-        //     id:this.props.match.params.id,
-        //   }).then(r=>{
-        //     console.log(r)
-        // })
     }
         
     render(){
         if(this.state.isLoading){
             // console.log(this.state.isLoading)
             return (
-                <Content>
+                <Content className={styles.containerBox}>
                     {this.state.detail}
-                    {<h3 className={styles.h3}>{`${this.state.title}· · · · · ·`}</h3>}
+                    {<h3 className={styles.h3}>{`${this.state.title}· · · · · ·`}
+                    <Link to={{
+                            pathname:`/celebrities/${this.props.match.params.id}`,
+                            state:`${this.state.title}`
+                        }}>（全部）
+                    </Link></h3>}
                     <div className={styles.flex}>
                         {this.state.actorsIntroduction}
                     </div>
