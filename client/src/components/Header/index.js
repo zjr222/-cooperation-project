@@ -8,7 +8,9 @@ export default function Header() {
     return (
         <div className={sty.header}>
             <div className={sty.logo}>
-                <img src={imgUrl} alt="Movie Club" />
+                <Link to='/'>
+                    <img src={imgUrl} alt="Movie Club" />
+                </Link>
             </div>
             <div className={sty.search}>
                 <Search className={sty.btn} placeholder="搜索电影、影人" enterButton/>

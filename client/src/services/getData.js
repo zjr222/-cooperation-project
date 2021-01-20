@@ -1,5 +1,5 @@
 import axios from 'axios';
-export default  {
+const apis =  {
     //正在热映
     getInProgressHot() {
         return axios.get('/home/hoting').then(res => {
@@ -25,10 +25,14 @@ export default  {
         })
     },
     //分类
-    getClasseMovie() {
-        return axios.get('/classe').then(res => {
+    getClasseMovie(condition) {
+        return axios.get('/classe', {
+            params: {
+                ...condition,
+            },
+        }).then(res => {
             return res.data;
-        })
+        });
     },
     //电影详情描述
     getMovieDetail(id) {
@@ -86,3 +90,5 @@ export default  {
         })
     },
 }
+
+export default apis;

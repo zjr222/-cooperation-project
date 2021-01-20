@@ -27,7 +27,6 @@ class MovieComment extends Component{
             start,
           }).then(r=>{
             const more = r.map((k,v)=>{
-                // console.log(k)
                 return (
                     <div className={styles.all}>
                         <div className={styles.avatar}>
@@ -43,8 +42,6 @@ class MovieComment extends Component{
         })
     }
     componentDidMount(){
-        // console.log(this.props)
-        // console.log(this.state.allComment,this.state.title)
         this.getPageData(this.state.start,this.props.match.params.id);
     }
     onChangePage(pageNumber){
@@ -60,7 +57,6 @@ class MovieComment extends Component{
                     <div className={styles.comments}>
                         <div className={styles.radio}>
                             <Radio.Group onChange={(e)=>{
-                                // console.log('radio checked', e.target.value);
                                 this.setState({
                                     value:e.target.value
                                 });
@@ -96,8 +92,4 @@ class MovieComment extends Component{
 }
 
 
-export default connect(
-    function mapStateToProps(state){
-        console.log(state)
-    }
-)(withRouter(MovieComment));
+export default connect()(withRouter(MovieComment));

@@ -37,7 +37,6 @@ async function getPopularFilmReviews() {
     const img = reviewMov.find('.review-hd a img').attr('src');
     const contents = reviewMov.find('.review-content').text().trim("").match(reg)[0]; //评论内容
     const peopleComment = reviewMov.find('.review-meta a').first().text(); //评论人
-    // console.log(id,rate,peopleComment,img)
     reviewMovs.push({
       id,
       question,
@@ -332,7 +331,6 @@ async function getActorDetail(id) {
   const description = $('#content #intro .all').text();
   // 获奖情况
 
-  console.log(moreChineseName,family)
   const winning = [];
   const $winningEle = $('#content .article .mod .award');
   for (let i = 0; i < $winningEle.length; i++) {
@@ -400,7 +398,6 @@ async function getCommentInMovie(id) {
   const comments = [];
   const $commentsEle = $('#content #comments-section #hot-comments .comment-item');
   const allComment = $('#hot-comments>a').text().trim().replace(/[^0-9]/ig,"") //短评总条数
-  // console.log(allComment);
   for (let i = 0; i < $commentsEle.length; i++) {
     const $ele = $($commentsEle[i]);
     const name = $ele.find('.comment h3 .comment-info>a').text(); // 评论者姓名
@@ -521,16 +518,13 @@ async function getActorAllMovie(id, sortby = 'vote', format = 'pic', start = 0) 
 async function getSearchResult(keyword) {
   keyword = encodeURI(keyword);
   const $ = await getSelector(`https://search.douban.com/movie/subject_search?search_text=${keyword}&cat=1002`);
-   console.log($('#wrapper').text());
   const movies = [];
   const $lis = $('#wrapper #root .item-root');
-  console.log($lis.length);
   for (let i = 0; i < $lis.length; i++) {
     const $ele = $($lis[i]);
     const id = $ele.find('>a img').attr('src').match(/\d+(?=\/)/)[0];
-    console.log(id);
   }
-  return moves;
+  return movies;
 }
 
 module.exports = {

@@ -23,9 +23,9 @@ export default function MovieCoverComp({id,movieName,region,director,duration,ra
                 <span className={styles.region}>{region}</span>
               </div>
               <div className={styles.director}>
-                  {`导演  ${director}`}
+                  {`导演:  ${Array.isArray(director) ? director.join(', ') : director}`}
               </div>
-              <div className={styles.actors}>{`主演  ${actors}`}</div>
+              <div className={styles.actors}>{`主演:  ${Array.isArray(actors) ? actors.join(', ') : actors}`}</div>
     </div>)
   }else{
     page = (<div></div>)
