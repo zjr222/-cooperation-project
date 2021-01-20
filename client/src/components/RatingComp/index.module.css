@@ -1,5 +1,5 @@
 .rating {
-  display: inline-block;
+  /* display: inline-block; */
   zoom: 1;
   margin: 4px auto 2px;
   height: 19px;
@@ -12,6 +12,7 @@
   margin: 0px 3px 0 0;
   width: 55px;
   height: 11px;
+  line-height: 11px;
   background-image: url('../../assets/images/rating.png');
 }
 
@@ -65,5 +66,6 @@
   color: #e09015;
   font-size: 12px;
   margin-left: 2px;
-  vertical-align: middle;
+  height: 12px;
+  line-height: 14px;
 }

@@ -5,7 +5,9 @@ import * as data from '../../services/getData'
 import styles from './index.module.css'
 import  RatingComp from '../RatingComp'
 import CommentComp from '../CommonComp/CommentComp'
+import store from '../../store';
 const { Content } = Layout;
+// console.log(store)
 
 export default class DetailsComp extends Component{
     constructor(props){
@@ -20,16 +22,18 @@ export default class DetailsComp extends Component{
             startNum: 20, //起始数量20
             title:null
         }
+        // this.state.title = store.getState();
+        // store.subscribe(this.storeChange)
     }
+    // storeChange = ()=>{
+    //     this.setState(store.getState());
+    // }
     componentWillMount(){
         // console.log(this.props)
     }
     componentDidMount(){
         data.default.getMovieDetail(this.props.match.params.id).then(r =>{
             // console.log(r);
-                this.setState({
-                    title:r.title
-                })
                 const hotPage  = (
                         <div className={styles.content}>
                             <h1>{r.title}</h1>
@@ -125,7 +129,7 @@ export default class DetailsComp extends Component{
                                 <h3>豆瓣评分</h3>
                                 <div className={styles.rater}>
                                     {/* <span>{this.props.location.state.isRate}</span> */}
-                                    <RatingComp className={styles.sty} score={this.props.location.state.isRate}/>
+                                    <RatingComp className={styles.sty} score={this.props.location.state}/>
                                 </div>
                             </div>
                             <div className={styles.introduction}>
@@ -135,7 +139,8 @@ export default class DetailsComp extends Component{
                         </div>
                 )
                 this.setState({
-                    detail:hotPage
+                    detail:hotPage,
+                    title:r.title
                 })
         })
         data.default.getActorsInMovie(this.props.match.params.id).then(r =>{
@@ -144,14 +149,22 @@ export default class DetailsComp extends Component{
                 return(
                     <div className={styles.box}>
                         <li className={styles.celebrity}>
-                            <Link>
+                            <Link to={
+                                {
+                                    pathname:`/actorIntroduce/${k.id}`
+                                }
+                            }>
                                 <div className={styles.avatar}>
                                     <img src={k.img} alt=""/>
                                 </div>
                             </Link>
                             <div className={styles.infos}>
                                 <p className={styles.name}>
-                                    <Link>{k.name}</Link>
+                                    <Link to={
+                                        {
+                                            pathname:`/actorIntroduce/${k.id}`
+                                        }
+                            }>{k.name}</Link>
                                 </p>
                                 <p className={styles.role}>
                                     {k.role}
@@ -166,14 +179,20 @@ export default class DetailsComp extends Component{
             })
         })
         data.default.getLikeByMovie(this.props.match.params.id).then(r=>{
-            // console.log(r);
             const moviePage = r.map((k,v)=>{
+                // console.log(k)
                 return (
                     <li className={styles.item}>
-                        <Link>
+                        <Link to={{
+                            pathname:`/details/${k.id}`,
+
+                        }}>
                             <img src={k.img} alt=""/>
                         </Link>
-                        <p><Link to={``}>{k.title}</Link></p>
+                        <p><Link to={{
+                            pathname:`/details/${k.id}`,
+
+                        }}>{k.title}</Link></p>
                     </li>
                 )
             })
@@ -254,3 +273,4 @@ export default class DetailsComp extends Component{
     }
     
 }
+

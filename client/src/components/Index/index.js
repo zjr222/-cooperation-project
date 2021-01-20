@@ -105,7 +105,7 @@ import PopularFilmComp from '../CommonComp/PopularFilmComp'
                 <h2 className={styles.title}>{this.state.title}</h2>
                 <div className={styles.hot}>
                      <ul>  
-                        <Carousel autoplay>
+                        <Carousel >
                            {this.state.hot}
                         </Carousel>
                      </ul>
@@ -115,7 +115,7 @@ import PopularFilmComp from '../CommonComp/PopularFilmComp'
                 <h2 className={styles.title}>最近热门电影</h2>
                 <div className={styles.moviesPage}>
                      <ul>  
-                        <Carousel autoplay dots={{className:"carousel"}}>
+                        <Carousel  dots={{className:"carousel"}}>
                            {this.state.hotMovies}
                         </Carousel>
                      </ul>
