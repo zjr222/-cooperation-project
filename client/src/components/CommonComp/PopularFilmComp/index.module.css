@@ -1,0 +1,41 @@
+.review{
+    width: 80%;
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.reviewHd{
+    width: 68px;
+    padding-top: 20px;
+}
+
+.reviewHd>a>img{
+    width: 68px;
+    height: 96.45px;
+}
+.reviewBd{
+    padding-left: 10px;
+}
+.reviewBd .movie:hover{
+    color: #FFFFFF;
+    text-decoration: none;
+    background: #37a;
+}
+.reviewBd h3{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.reviewMeta a{
+    margin: 0 5px;
+    font-size: 13px;
+}
+
+.reviewContent{
+    font-size: 13px;
+    margin-top: 10px;
+}

@@ -4,7 +4,7 @@ import styles from './index.module.css';
 export default function ChecoutComp(props) {
   const [tag, setTag] = useState(props.attrs[0]);
   const spans = props.attrs.map(it => <span
-    className={`${styles.tag} ${it == tag ? styles.active : ''}`}
+    className={`${styles.tag} ${it === tag ? styles.active : ''}`}
     key={it}
     onClick={() => {
       setTag(it);

@@ -27,6 +27,9 @@ router.use('/movie', movieRouter);
 // 演员
 router.use('/actor', actorRouter);
 
-
+router.use((err, req, res, next) => {
+  console.log(123)
+  res.status(500).send('服务器内部错误');
+})
 
 module.exports = router;

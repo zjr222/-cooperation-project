@@ -1,7 +1,10 @@
-.containerBox{
-    padding-top: 20px;
+.box{
+    width: 1190px;
+    margin: 0 auto;
 }
-/* 电影简介 */
+.actorDetail{
+    padding-top: 30px;
+}
 .content{
     width: 1190px;
     margin: 0 auto;
@@ -100,72 +103,63 @@
     text-align: center;
 }
 
-/* 喜欢这部电影的其他的电影 */
-.otherMovie{
-    width: 1190px;
-    margin: 0 auto;
-    padding-top: 30px;
+.description,
+.winWorks,
+.work{
+    margin-top: 30px;
+    border-top: 1px dashed #ccc;
 }
 
-.otherMovie ul{
-    width: 60%;
+.description h2,
+.winWorks h2,
+.work h2{
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 200;
+    margin-bottom: 10px;
+}
+
+.description p{
+    text-indent: 4rem;
+    font-size: 14px;
+}
+
+.winWorks{
+    margin-top: 30px;
+    border-top: 1px dashed #ccc;
+}
+
+.itemWork{
+    padding-top: 10px;
+}
+
+.itemWork .item{
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.movie{
     display: flex;
-    flex-wrap: wrap;
 }
 
-.item{
-    flex-basis: 142.8px;
+.movie img{
+    width: 115px;
+    height: 170px;
 }
-
-.item a img{
-    width: 125px;
-    height: 173px;
+.works{
+    flex-basis: 260px;
 }
-
-.item p{
-    width: 125px;
-    font-size: 14px;
+.title{
+    font-size: 12px;
+    margin-right: 3px;
+}
+.text{
+    width: 115px;
+    padding-top: 7px;
     text-align: center;
-    padding: 15px 0px;
-    color: #067e1a;
 }
 
-.item p a{
-    color: inherit;
-}
-
-.more{
-    width: 1190px;
-    margin: 0 auto;
-    padding-top: 20px;
-    color: #3690d4;
-    font-size: 14px;
-}
-
-.more a{
-    color: inherit;
-}
-
-/*热映短评*/
-.comment{
-    padding-top: 20px;
-}
-
-
-/* 加载页面中 */
-.cont{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-
-.spin{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
+.rate{
+    color: rgb(201, 198, 33);
+    font-size: 8px;
 }

@@ -29,18 +29,23 @@ async function getPopularFilmReviews() {
   let reviewMovs = []; //获得影评电影
   for (let i = 0; i < reviewsCon.length; i++) {
     const reviewMov = $(reviewsCon[i]);
-    const hrefs = reviewMov.find('.review-hd a').attr('href') //获取影片简介地址
-    const titles = reviewMov.find('.review-bd h3').text(); //获取电影标题
-    const moiveNames = reviewMov.find('.review-meta a').text().match(/《[\s\S]+/);
-    const stars = reviewMov.find('.review-meta span').attr('class').slice(7, 9);
+    const id = reviewMov.find('.review-hd a').attr('href').replace(/[^0-9]/ig,"") //获取影片简介地址
+    const question = reviewMov.find('.review-bd h3').text(); //获取电影标题问题
+    const moiveNames = reviewMov.find('.review-meta a').text().match(/《[\s\S]+/);//电影名
+    const rate = reviewMov.find('.review-meta span').attr('class').slice(7, 9)/5;//评分
     const reg = /[\s\S]+(?=\n)/;
-    const contents = reviewMov.find('.review-content').text().trim("").match(reg)[0];
+    const img = reviewMov.find('.review-hd a img').attr('src');
+    const contents = reviewMov.find('.review-content').text().trim("").match(reg)[0]; //评论内容
+    const peopleComment = reviewMov.find('.review-meta a').first().text(); //评论人
+    // console.log(id,rate,peopleComment,img)
     reviewMovs.push({
-      hrefs,
-      titles,
+      id,
+      question,
       moiveNames,
-      stars,
-      contents
+      rate,
+      contents,
+      peopleComment,
+      img
     })
 
   }
@@ -168,7 +173,7 @@ async function getClasseMovie({
 }
 
 // 电影参与人所有图片信息
-async function getMovieActorImg(id) {
+async function getMovieAllActorMsg(id) {
   const actors = [];
   const $ = await getSelector(`https://movie.douban.com/subject/${id}/celebrities`);
 
@@ -211,7 +216,7 @@ async function getMovieActorImg(id) {
   // 编剧信息
   const $authorEle = $('#content #celebrities>.list-wrapper:nth-of-type(3) ul .celebrity');
   const authorImg = $authorEle.find('a .avatar').attr('style').match(/http([\d\D]+)(?=\))/)[0]; // 封面
-  const authorRole = $authorEle.find('.info .role').text(); // 职责
+  const authorRole = $authorEle.find('.info .role').attr('title'); // 职责
   const authorName = $authorEle.find('.info .name a').attr('title'); // 名称
   const authorId = $authorEle.find('>a').attr('href').match(/\d+(?=\/)/)[0];
   const authorWorksEle = $authorEle.find('.info .works a'); // 代表作
@@ -220,8 +225,27 @@ async function getMovieActorImg(id) {
     const value = $(authorWorksEle[i]).text();
     authorWorks.push(value);
   }
+  // 制片人信息
+  const $producerEle = $('#content #celebrities>.list-wrapper:nth-of-type(4) ul .celebrity');
+  const producerImg = $producerEle.find('a .avatar').attr('style').match(/http([\d\D]+)(?=\))/)[0]; //封面
+  const producerRole = $producerEle.find('.info .role').attr('title'); //职责
+  const producerName = $producerEle.find('.info .name a').attr('title'); // 名称
+  const producerId = $producerEle.find('>a').attr('href').match(/\d+(?=\/)/)[0];
+  const producerWorksEle = $producerEle.find('.info .works a'); // 代表作
+  const producerWorks =[];
+  for (let i = 0; i < producerWorksEle.length; i++) {
+    const value = $(producerWorksEle[i]).text();
+    producerWorks.push(value);
+  }
   return {
-    author: {
+    producer:{
+      id:producerId,
+      name:producerName,
+      role:producerRole,
+      img:producerImg,
+      works:producerWorks
+    },
+    screenWriter: {
       id: authorId,
       name: authorName,
       role: authorRole,
@@ -278,13 +302,14 @@ async function getMovieDetail(id) {
 async function getActorDetail(id) {
   const $ = await getSelector(`https://movie.douban.com/celebrity/${id}`);
   const $wrapper = $('#content #headline .info');
+  const title = $('#content>h1').text();
   const img = $('#content #headline .pic img').attr('src'); // 封面
   // 性别
   const sexPreEle = $wrapper.find('>ul>li:nth-of-type(1) span')[0].nextSibling;
   const sex = $(sexPreEle).text().replace(/:|\s/g, '');
   // 星座
   const startPreEle = $wrapper.find('>ul>li:nth-of-type(2) span')[0].nextSibling;
-  const start = $(startPreEle).text().replace(/:|\s/g, '');
+  const constellation = $(startPreEle).text().replace(/:|\s/g, '');
   // 出生日期
   const datePreEle = $wrapper.find('>ul>li:nth-of-type(3) span')[0].nextSibling;
   const date = $(datePreEle).text().replace(/:|\s/g, '');
@@ -296,10 +321,18 @@ async function getActorDetail(id) {
   const workInPlace = $(workInPlacePreEle).text().replace(/:/g, '').trim();
   // 更多外文名
   const otherNamePreEle = $wrapper.find('>ul>li:nth-of-type(6) span')[0].nextSibling;
-  const otherName = $(otherNamePreEle).text().replace(/:/g, '').trim();
+  const moreEnglishName= $(otherNamePreEle).text().replace(/:/g, '').trim();
+  // 更多中文名
+  const moreChineseNameEle = $wrapper.find('>ul>li:nth-of-type(7) span')[0].nextSibling;
+  const moreChineseName = $(moreChineseNameEle).text().replace(/:/g, '').trim();
+  // 家庭成员
+  const familyEle = $wrapper.find('>ul>li:nth-of-type(7) span')[0].nextSibling;
+  const family = $(familyEle).text().replace(/:/g, '').trim();
   // 影人简介
   const description = $('#content #intro .all').text();
   // 获奖情况
+
+  console.log(moreChineseName,family)
   const winning = [];
   const $winningEle = $('#content .article .mod .award');
   for (let i = 0; i < $winningEle.length; i++) {
@@ -322,14 +355,17 @@ async function getActorDetail(id) {
       date,
     });
   }
-  // console.log(img,sex);
   return {
+    title,
     img,
     sex,
+    constellation,
     date,
     birthPlace,
     workInPlace,
-    otherName,
+    moreEnglishName,
+    moreChineseName,
+    family,
     description,
     winning,
     welecome,
@@ -356,6 +392,7 @@ async function getActorsInMovie(id) {
   }
   return actors;
 }
+
 
 // 获取当前电影的部分评论
 async function getCommentInMovie(id) {
@@ -503,7 +540,7 @@ module.exports = {
   getSortMovies,
   getClasseMovie,
   getMovieDetail,
-  getMovieActorImg,
+  getMovieAllActorMsg,
   getActorDetail,
   getActorAllMovie,
   getActorsInMovie,

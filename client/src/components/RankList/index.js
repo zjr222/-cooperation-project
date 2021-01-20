@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import RatingComp from '../RatingComp';
 import styles from './index.module.css';
-import * as data  from '../../services/getData'
+import * as data from '../../services/getData'
 
-export default class RankList extends Component{
-  constructor(){
+export default class RankList extends Component {
+  constructor() {
     super();
-    this.state={
-      sortList:[]
+    this.state = {
+      sortList: []
     }
   }
-  componentDidMount(){
-    data.default.getSortMovies().then(res=>{
-      console.log(res)
+  componentDidMount() {
+    data.default.getSortMovies().then(res => {
       const sorts = res.map(m => {
         return (
-        <a href="#" key={m.id} >
+          <Link to={`/details/${m.id}`} key={m.id} >
             <div className={`${styles.itemWrapper}`}>
               <div className={`${styles.item} clearfix`}>
                 <div className={`${styles.cover} fl`}>
@@ -31,26 +31,22 @@ export default class RankList extends Component{
                 </div>
               </div>
             </div>
-        </a>)
+          </Link>)
       });
       this.setState({
-        sortList:sorts
+        sortList: sorts
       })
     })
   }
 
-  render(){
+  render() {
     return <div className={styles.wrapper}>
-        <div className={styles.title}>
-          <h2>Movie Club 排行榜</h2>
-        </div>
-        <div>
-          {this.state.sortList}
-        </div>
-  </div>
+      <div className={styles.title}>
+        <h2>Movie Club 排行榜</h2>
+      </div>
+      <div>
+        {this.state.sortList}
+      </div>
+    </div>
   }
-  
 }
-
-
-

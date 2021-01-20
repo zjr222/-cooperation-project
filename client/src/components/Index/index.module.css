@@ -2,10 +2,70 @@
   width: 1190px;
   margin: 0 auto;
 }
-.container .title{
+
+.title{
+  width: 80%;
   font-size: 16px;
   color: black;
   height: 40px;
   line-height: 40px;
   border-bottom: 1px solid #ccc;
+}
+
+.hot{
+  position: relative;
+  padding-top: 20px;
+}
+
+.car{
+  display: flex !important;
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow: auto;
+}
+
+.movies{
+  flex-basis: 200px;
+}
+
+/* 热门电影页 */
+.moviesPage{
+  position: relative;
+  padding-top: 20px;
+}
+
+.page{
+  display: flex !important;
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow: auto;
+  flex-wrap: wrap;
+}
+
+.item2{
+  flex-basis: 200px;
+}
+
+.carousel{
+  color: rgb(247, 14, 14) !important;
+}
+
+.ant-carousel .slick-dots li{
+  padding-top: 10px;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
+
+.ant-carousel .slick-dots li button{
+  height: 10px !important;
+  background: rgba(0, 0, 0, .65) !important;
+}
+
+.ant-carousel .slick-dots li.slick-active button{
+  background: #108ee9;
+}
+
+/* 最受欢迎影评 */
+.reviews{
+  margin-bottom: 36px;
 }

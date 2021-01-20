@@ -17,13 +17,14 @@
 }
 /* 电影图片hover之后显示的内容 */
 .hover{
+    position: absolute;
     width: 180%;
     background-color: rgb(250, 250, 249);
     border: 1px solid #ccc;
-    position: absolute;
     top: 0;
     left: 120%;
     padding:15px;
+    z-index: 99999 !important;
 }
 
 .date{
@@ -31,7 +32,7 @@
     font-size: 14px;
     color: #ccc;
 }
-.rate{
+.rates{
     text-align: left;
 }
 

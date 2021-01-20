@@ -5,6 +5,7 @@ import MovieComp from '../CommonComp/MovieComp';
 import apis from '../../services/getData';
 import jieliu from '../../utils/jieliu';
 import lazyLoad from '../../utils/lazyLoad';
+import { Spin } from 'antd';
 
 const arrtsArr = [
   ['全部类型', '剧情', '喜剧', '动作', '爱情', '科幻', '动画', '悬疑', '惊悚', '恐怖', '犯罪', '同性', '音乐', '歌舞', '传记', '历史', '战争', '西部', '奇幻', '冒险', '灾难', '武侠', '情色'],
@@ -24,6 +25,7 @@ export default function Sort() {
     year_range: '',
   });
   const [tags, setTags] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [moviesList, setMoviesList] = useState([]);
   useEffect(() => {
     document.onscroll = jieliu(() => {
@@ -40,23 +42,30 @@ export default function Sort() {
       document.onscroll = null;
     }
   }, []);
-  useEffect(async () => {
-    console.log(condition)
-    const result = await apis.getClasseMovie(condition);
-    setMoviesList([...moviesList, ...result.data]);
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      const result = await apis.getClasseMovie(condition);
+      setMoviesList(() => [...moviesList, ...result.data]);
+      setLoading(false);
+    }
+    fetchData();
   }, [condition]);
-  let movieEle = moviesList.map(it => <MovieComp key={it.id} data={{
-    id: [it.id],
-    rate: it.rate,
-    img: it.cover,
-    movieName: it.title,
-    director: it.directors,
-    actors: it.casts,
-  }} />);
-  if (movieEle.length === 0) {
-    movieEle = <div>暂无数据</div>;
-  }
+  let movieEle = moviesList.map(it => {
+    const data = {
+      id: [it.id],
+      rate: it.rate,
+      img: it.cover,
+      movieName: it.title,
+      director: it.directors,
+      actors: it.casts,
+    };
+    return <MovieComp key={it.id} {...data} />
+  });
 
+  if (moviesList.length === 0) {
+    movieEle = <div className={styles.noData}>暂无数据</div>
+  }
   const checkouts = arrtsArr.map(attrs => <CheckoutComp key={attrs[0]} attrs={attrs} onCheckout={(key, value) => {
     const tagIndex = tags.findIndex(it => it[0] === key);
     const newTags = [...tags];
@@ -78,10 +87,12 @@ export default function Sort() {
   return (
     <div className={styles.sortWrapper}>
       {checkouts}
-      <div className={`${styles.movieList}`}>
-        {/* 电影列表 */}
-        {movieEle}
-      </div>
+      <Spin spinning={loading} size='large' className={styles.loading}>
+        <div className={`${styles.movieList}`}>
+          {/* 电影列表 */}
+          {movieEle}
+        </div>
+      </Spin>
     </div>
   )
 }
