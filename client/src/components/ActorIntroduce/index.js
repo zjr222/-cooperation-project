@@ -15,9 +15,7 @@ export default class ActorIntroduce extends Component{
         }
     }
     componentDidMount(){
-        // console.log(this.props)
         data.getActorDetail(this.props.match.params.id).then(r=>{
-            console.log(r)
             const actorIntro = (
                 <div className={sty.content}>
                     <h1>{r.title}</h1>

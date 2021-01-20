@@ -87,7 +87,6 @@ export default class Main extends Component {
       })
       data.getPopularFilmReviews().then(res => { //正在热映
          const popular = res.reviewMovs.map((k, v) => {
-            //  console.log(k)
             return (
                <PopularFilmComp people={k.peopleComment} id={k.id} rate={k.rate} movieName={k.moiveNames[0]} contents={k.contents} img={k.img} question={k.question} />
             )

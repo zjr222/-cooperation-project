@@ -22,12 +22,9 @@ export default class DetailsComp extends Component {
         }
     }
     componentWillMount() {
-        // console.log(this.props)
     }
     componentDidMount() {
         data.default.getMovieDetail(this.props.match.params.id).then(r => {
-            // console.log(r);
-
             const hotPage = (
                 <div className={styles.content}>
                     <h1>{r.title}</h1>
@@ -165,7 +162,6 @@ export default class DetailsComp extends Component {
             })
         })
         data.default.getLikeByMovie(this.props.match.params.id).then(r => {
-            // console.log(r);
             const moviePage = r.map((k, v) => {
                 return (
                     <li className={styles.item}>
@@ -200,7 +196,6 @@ export default class DetailsComp extends Component {
 
     render() {
         if (this.state.isLoading) {
-            // console.log(this.state.isLoading)
             return (
                 <Content className={styles.containerBox}>
                     {this.state.detail}

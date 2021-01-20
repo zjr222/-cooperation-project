@@ -4,7 +4,6 @@ import styles from './index.module.css'
 
 export default function CommentComp({name,date,rate,content,useful}){
     let rating = Math.ceil(rate);
-    // console.log(rating)
     return(
         <div className={styles.box}>
             <div className={styles.commentItem}>

@@ -42,7 +42,6 @@ export default class AllActors extends Component {
         )
     }
     componentDidMount() {
-        // console.log(this.props)
         data.getMovieAllActorMsg(this.props.match.params.id).then(r => {
             const actors = r.actors.map((k, v) => {
                 return this.commonStyle(k, v);
