@@ -5,11 +5,9 @@ import * as data from '../../services/getData'
 import styles from './index.module.css'
 import RatingComp from '../RatingComp'
 import CommentComp from '../CommonComp/CommentComp'
-import store from '../../store';
 const { Content } = Layout;
-// console.log(store)
 
-export default class DetailsComp extends Component {
+class DetailsComp extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -22,11 +20,8 @@ export default class DetailsComp extends Component {
             startNum: 20, //起始数量20
             title: null
         }
-        // this.state.title = store.getState();
-        // store.subscribe(this.storeChange)
     }
     componentDidMount() {
-        console.log(this.props)
         data.default.getMovieDetail(this.props.match.params.id).then(r => {
             const hotPage = (
                 <div className={styles.content}>
@@ -145,7 +140,7 @@ export default class DetailsComp extends Component {
                         <li className={styles.celebrity}>
                             <Link to={
                                 {
-                                    pathname:`/actorIntroduce/${k.id}`
+                                    pathname: `/actorIntroduce/${k.id}`
                                 }
                             }>
                                 <div className={styles.avatar}>
@@ -156,9 +151,9 @@ export default class DetailsComp extends Component {
                                 <p className={styles.name}>
                                     <Link to={
                                         {
-                                            pathname:`/actorIntroduce/${k.id}`
+                                            pathname: `/actorIntroduce/${k.id}`
                                         }
-                            }>{k.name}</Link>
+                                    }>{k.name}</Link>
                                 </p>
                                 <p className={styles.role}>
                                     {k.role}
@@ -177,12 +172,12 @@ export default class DetailsComp extends Component {
                 return (
                     <li className={styles.item}>
                         <Link to={{
-                            pathname:`/details/${k.id}`,
+                            pathname: `/details/${k.id}`,
                         }}>
                             <img src={k.img} alt="" />
                         </Link>
                         <p><Link to={{
-                            pathname:`/details/${k.id}`,
+                            pathname: `/details/${k.id}`,
                         }}>{k.title}</Link></p>
                     </li>
                 )
@@ -260,5 +255,6 @@ export default class DetailsComp extends Component {
             )
         }
     }
-
 }
+
+export default DetailsComp

@@ -1,6 +1,6 @@
 export const actionTypes = {
-    MOVIESNAME : Symbol("movies-name"),//电影名
-    ALLCOMMENTS : Symbol("all-comments"),//某部电影的所有短评
+    MOVIESNAME: "movies-name",//电影名
+    ALLCOMMENTS: "all-comments",//某部电影的所有短评
 }
 
 export const getMoviesPage = (data) => ({

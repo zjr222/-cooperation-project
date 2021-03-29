@@ -3,7 +3,7 @@ import styles from './index.module.css';
 import CheckoutComp from '../CheckoutComp';
 import MovieComp from '../CommonComp/MovieComp';
 import apis from '../../services/getData';
-import jieliu from '../../utils/jieliu';
+import throttle from '../../utils/throttle';
 import lazyLoad from '../../utils/lazyLoad';
 import { Spin } from 'antd';
 
@@ -28,7 +28,7 @@ export default function Sort() {
   const [loading, setLoading] = useState(false);
   const [moviesList, setMoviesList] = useState([]);
   useEffect(() => {
-    document.onscroll = jieliu(() => {
+    document.onscroll = throttle(() => {
       lazyLoad(() => {
         setCondition(prev => {
           return {
@@ -63,9 +63,9 @@ export default function Sort() {
     return <MovieComp key={it.id} {...data} />
   });
 
-  if (moviesList.length === 0) {
-    movieEle = <div className={styles.noData}>暂无数据</div>
-  }
+  // if (moviesList.length === 0) {
+  //   movieEle = <div className={styles.noData}>暂无数据</div>
+  // }
   const checkouts = arrtsArr.map(attrs => <CheckoutComp key={attrs[0]} attrs={attrs} onCheckout={(key, value) => {
     const tagIndex = tags.findIndex(it => it[0] === key);
     const newTags = [...tags];
